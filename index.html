@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!---
+This website was created in collaboration with Steven Escobar-Mendez
+The goal is to help people visiting Washington DC better navigate the subway
+-->
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Washington DC Metro Guide</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #3498db, #9b59b6);
+        }
+
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .instruction {
+            margin: 20px 0;
+        }
+
+        .language-selector {
+            margin-bottom: 20px;
+        }
+
+        .language-selector select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .card-amount {
+            margin-top: 20px;
+        }
+
+        .card-amount p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Washington DC Metro Guide</h1>
+        <div class="language-selector">
+            <label for="language">Select Language:</label>
+            <select id="language" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="zh">中文</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ja">日本語</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+
+        <div id="instructions" class="instruction">
+            <p><strong>How to Use the Machine:</strong></p>
+            <ol>
+                <li>Pick 'B' to get the single use card, unless you're in a group in which case pick 'C' for a group
+                    card.</li>
+                <li>Select how many credits you want to add on. Note you will have a fee of $2 for each new card you
+                    get.</li>
+                <li>Take the card.</li>
+                <li>Swipe the card as you go through the turnstiles.</li>
+            </ol>
+        </div>
+
+        <div id="card-amount" class="card-amount">
+            <p><strong>How much should I put on the card?</strong></p>
+            <p>Most people should put $20 -- that should cover most places. If you're doing something specific, here are
+                some recommendations:</p>
+            <ul>
+                <p>On the weekends, all stops you'd expect to pay $2.50 / person</p>
+                <li>Dulles <> L'enfant -- $6.75 / person</li>
+                <li>Ronald Reagan <> L'enfant -- $2.40 person</li>
+            </ul>
+            <p>On the weekends, expect to pay $2.50 / person</p>
+            <p>Remember, you can recharge your card at any station!</p>
+        </div>
+    </div>
+
+    <script>
+        function changeLanguage() {
+            const language = document.getElementById("language").value;
+            const instructions = document.getElementById("instructions");
+            const cardAmount = document.getElementById("card-amount");
+
+            if (language === "en") {
+                instructions.innerHTML = `
+                    <p><strong>How to Use the Machine:</strong></p>
+                    <ol>
+                        <li>Pick 'B' to get the single use card, unless you're in a group in which case pick 'C' for a group card.</li>
+                        <li>Select how many dollars you want to add on. Note you will have a fee of $2 for each new card you get.</li>
+                        <li>Take the card.</li>
+                        <li>Swipe the card as you go through the turnstiles.</li>
+                    </ol>
+                `;
+                cardAmount.innerHTML = `
+                    <p><strong>How much should I put on the card?</strong></p>
+                    <p>Most people should put $20 -- that should cover most places. If you're doing something specific, here are some recommendations:</p>
+                    <ul>
+                        <p>On the weekends, all stops you'd expect to pay $2.50 / person</p>
+                        <li>Dulles <> L'enfant -- $6.75 / person</li>
+                        <li>Ronald Reagan <> L'enfant -- $2.40 / person</li>
+                    </ul>
+                    <p>On the weekends, expect to pay $2.50 / person</p>
+                    <p>Remember, you can recharge your card at any station!</p>
+                `;
+            } else if (language === "es") {
+                instructions.innerHTML = `
+                    <p><strong>Cómo usar la máquina:</strong></p>
+                    <ol>
+                        <li>Elija 'B' para obtener la tarjeta para una persona, a menos que esté en un grupo, en cuyo caso elija 'C' para obtener tarjetas para el grupo.</li>
+                        <li>Seleccione cuántos dolares desea agregar. Tenga en cuenta que se le cobrará una tarifa de $2 por cada nueva tarjeta que obtenga.</li>
+                        <li>Retire la tarjeta.</li>
+                        <li>Deslice la tarjeta al pasar por las puertas de torniquete.</li>
+                    </ol>
+                `;
+                cardAmount.innerHTML = `
+                    <p><strong>¿Cuánto debo poner en la tarjeta?</strong></p>
+                    <p>La mayoría de las personas debe poner $20, eso debería cubrir la mayoría de los lugares. Si estás haciendo algo específico, aquí hay algunas recomendaciones:</p>
+                    <ul>
+                        <li>Dulles <> L'enfant -- $6.75 / persona</li>
+                        <li>Ronald Reagan <> L'enfant -- $2.40 / persona</li>
+                    </ul>
+                    <p>en el fin de semana, cada viaje esperar a pagar $2.50 / persona</p>
+                    <p>¡Recuerda que puedes recargar tu tarjeta en cualquier estación!</p>
+                `;
+            } else if (language === "zh") {
+                instructions.innerHTML = `
+                    <p><strong>如何使用机器：</strong></p>
+                    <ol>
+                        <li>选择'B'获取单次使用卡，除非你是团体游客，则选择'C'获取团体卡。</li>
+                        <li>选择你想充值的金额。请注意，每张新卡将收取$2费用。</li>
+                        <li>取走卡片。</li>
+                        <li>在闸机处刷卡进入。</li>
+                    </ol>
+                `;
+                cardAmount.innerHTML = `
+                    <p><strong>我应该往卡里充值多少？</strong></p>
+                    <p>大多数人应该充值$20，这应该能涵盖大多数地方。如果你有特别需求，以下是一些建议：</p>
+                    <ul>
+                        <p>周末时，所有车站的单程票价大约为$2.50 / 人</p>
+                        <li>Dulles <> L'enfant -- $6.75 / 人</li>
+                        <li>Ronald Reagan <> L'enfant -- $2.40 / 人</li>
+                    </ul>
+                    <p>周末时，预计每人收费$2.50</p>
+                    <p>记住，你可以在任何车站为卡充值！</p>
+                `;
+            } else if (language === "fr") {
+                instructions.innerHTML = `
+                    <p><strong>Comment utiliser la machine :</strong></p>
+                    <ol>
+                        <li>Choisissez 'B' pour obtenir une carte à usage unique, sauf si vous êtes en groupe, dans ce cas choisissez 'C' pour une carte de groupe.</li>
+                        <li>Choisissez combien de crédits vous souhaitez ajouter. Notez qu'il y a des frais de $2 pour chaque nouvelle carte.</li>
+                        <li>Prenez la carte.</li>
+                        <li>Glissez la carte lorsque vous passez les tourniquets.</li>
+                    </ol>
+                `;
+                cardAmount.innerHTML = `
+                    <p><strong>Combien dois-je mettre sur la carte ?</strong></p>
+                    <p>La plupart des gens doivent mettre $20 – cela couvre la plupart des endroits. Si vous faites quelque chose de spécifique, voici quelques recommandations :</p>
+                    <ul>
+                        <p>Le week-end, toutes les stations coûteront environ $2.50 / personne</p>
+                        <li>Dulles <> L'enfant -- $6.75 / personne</li>
+                        <li>Ronald Reagan <> L'enfant -- $2.40 personne</li>
+                    </ul>
+                    <p>Le week-end, attendez-vous à payer $2.50 / personne</p>
+                    <p>Rappelez-vous que vous pouvez recharger votre carte à n'importe quelle station !</p>
+                `;
+            } else if (language === "de") {
+                instructions.innerHTML = `
+                    <p><strong>Wie man die Maschine benutzt:</strong></p>
+                    <ol>
+                        <li>Wählen Sie 'B' für die Einzelfahrkarte, es sei denn, Sie sind in einer Gruppe, in diesem Fall wählen Sie 'C' für eine Gruppenkarten.</li>
+                        <li>Wählen Sie, wie viele Dollar Sie aufladen möchten. Beachten Sie, dass für jede neue Karte eine Gebühr von 2 $ anfällt.</li>
+                        <li>Holen Sie die Karte ab.</li>
+                        <li>Schwenken Sie die Karte beim Durchqueren der Drehkreuze.</li>
+                    </ol>
+                `;
+                cardAmount.innerHTML = `
+                    <p><strong>Wie viel soll ich auf die Karte laden?</strong></p>
+                    <p>Die meisten Leute sollten $20 aufladen - das sollte die meisten Orte abdecken. Wenn Sie etwas Bestimmtes tun, finden Sie hier einige Empfehlungen:</p>
+                    <ul>
+                        <li>Dulles <> L'enfant -- $6.75 / Person</li>
+                        <li>Ronald Reagan <> L'enfant -- $2.40 Person</li>
+                    </ul>
+                    <p>Am Wochenende können Sie mit $2.50 pro Person rechnen</p>
+                    <p>Denken Sie daran, dass Sie Ihre Karte an jeder Station aufladen können!</p>
+                `;
+            } else if (language === "ja") {
+                instructions.innerHTML = `
+                    <p><strong>機械の使い方：</strong></p>
+                    <ol>
+                        <li>‘B’ を選択して単一使用カードを取得します。グループであれば、‘C’ を選択してグループカードを取得します。</li>
+                        <li>追加する金額を選択します。新しいカードごとに$2の手数料がかかりますのでご注意ください。</li>
+                        <li>カードを受け取ります。</li>
+                        <li>改札でカードをスワイプして通過します。</li>
+                    </ol>
+                `;
+                cardAmount.innerHTML = `
+                    <p><strong>カードにいくら入金すべきですか？</strong></p>
+                    <p>ほとんどの人は$20を入金すれば、ほとんどの場所に対応できます。特定のことをしている場合、以下の推奨があります：</p>
+                    <ul>
+                        <li>Dulles <> L'enfant -- $6.75 / 人</li>
+                        <li>Ronald Reagan <> L'enfant -- $2.40 人</li>
+                    </ul>
+                    <p>週末は、$2.50 / 人の料金がかかります。</p>
+                    <p>カードはどの駅でもチャージできますので、ご安心ください！</p>
+                `;
+            } else if (language === "ar") {
+                instructions.innerHTML = `
+                    <p><strong>كيفية استخدام الجهاز:</strong></p>
+                    <ol>
+                        <li>اختر "B" للحصول على بطاقة للاستخدام الفردي، ما لم تكن في مجموعة، في هذه الحالة اختر "C" لبطاقة جماعية.</li>
+                        <li>حدد المبلغ الذي ترغب في إضافته. مع ملاحظة أنه سيتم فرض رسوم قدرها 2 دولار على كل بطاقة جديدة تحصل عليها.</li>
+                        <li>خذ البطاقة.</li>
+                        <li>مرر البطاقة عند المرور عبر البوابات الدوارة.</li>
+                    </ol>
+                `;
+                cardAmount.innerHTML = `
+                    <p><strong>كم يجب أن أضع على البطاقة؟</strong></p>
+                    <p>ينبغي لمعظم الأشخاص إضافة 20 دولارًا – فهذا يكفي لمعظم الأماكن. إذا كنت تقوم بشيء معين، إليك بعض التوصيات:</p>
+                    <ul>
+                        <li>Dulles <> L'enfant -- $6.75 / شخص</li>
+                        <li>Ronald Reagan <> L'enfant -- $2.40 شخص</li>
+                    </ul>
+                    <p>في عطلة نهاية الأسبوع، قد تضطر لدفع 2.50 دولار / شخص</p>
+                    <p>تذكر أنه يمكنك إعادة شحن بطاقتك في أي محطة!</p>
+                `;
+            }
+        }
+    </script>
+</body>
+
+</html>
